@@ -11,6 +11,8 @@ pub use state::*;
 pub mod errors;
 pub use errors::*;
 
+pub mod helpers;
+
 #[program]
 pub mod amm_b {
     use super::*;
@@ -21,8 +23,8 @@ pub mod amm_b {
     }
 
     //deposit tokens for LP
-    pub fn deposit(ctx: Context<Deposit>) -> Result<()> {
-        unimplemented!()
+    pub fn deposit(ctx: Context<Deposit>, amount:u64, max_x:u64, max_y:u64, expiration:i64) -> Result<()> {
+        ctx.accounts.deposit(amount, max_x, max_y, expiration)
     }
 
     //withdraw tokens for LP
